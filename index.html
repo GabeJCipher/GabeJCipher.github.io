@@ -29,53 +29,105 @@
       margin-top: 2em;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .projects-section {
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
-    ul li {
-      margin: 10px 0;
-    }
-
-    a {
-      color: #00dd77;
-      text-decoration: none;
-      font-weight: bold;
-      border-bottom: 2px solid transparent;
-      transition: 0.3s;
-    }
-
-    a:hover {
-      border-bottom: 2px solid #00dd77;
-    }
-
-    .card {
+    .project-card {
       background: #1e1e1e;
       border-radius: 16px;
       box-shadow: 0 4px 15px rgba(0, 255, 120, 0.1);
-      display: inline-block;
-      padding: 30px 40px;
+      padding: 25px;
+      margin: 20px auto;
+      text-align: left;
       max-width: 600px;
-      margin: 0 auto;
+    }
+
+    .project-title {
+      color: #00dd77;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+
+    .project-buttons a {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background-color: #00cc66;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .project-buttons a:hover {
+      background-color: #00994d;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>Gabriel Joaquim</h1>
-    <p>Estudante de Engenharia da Computação<br>Desenvolvedor em formação</p>
+  <h1>Gabriel Joaquim</h1>
+  <p>Estudante de Engenharia da Computação<br>Desenvolvedor em formação</p>
 
-    <h2>📂 Projetos</h2>
-    <ul>
-      <li><a href="https://github.com/GabeJCipher/platina-facil" target="_blank">Platina Fácil</a></li>
-      <li><a href="https://github.com/GabeJCipher/savepoint" target="_blank">SavePoint</a></li>
-    </ul>
+  <div class="projects-section">
+    <h2>🌐 Projetos HTML/CSS</h2>
 
-    <h2>📫 Contato</h2>
-    <p>Email: <a href="mailto:gabrieljoavare7@gmail.com">gabrieljoavare7@gmail.com</a></p>
+    <div class="project-card">
+      <div class="project-title">Kakusei</div>
+      <div class="project-desc">Site temático feito com HTML e CSS. Totalmente responsivo e estilizado.</div>
+      <div class="project-buttons">
+        <a href="./kakusei-site/index.html" target="_blank">Ver online</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Dashboard</div>
+      <div class="project-desc">Dashboard de exemplo para exibição de dados visuais com HTML, CSS e JS.</div>
+      <div class="project-buttons">
+        <a href="./dashboard/index.html" target="_blank">Ver online</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Site do Nicolas</div>
+      <div class="project-desc">Site pessoal simples com navegação básica, feito em HTML puro.</div>
+      <div class="project-buttons">
+        <a href="./SiteNicolas/index.html" target="_blank">Ver online</a>
+      </div>
+    </div>
+
+    <h2>📦 Projetos PHP (somente código)</h2>
+
+    <div class="project-card">
+      <div class="project-title">Platina Fácil</div>
+      <div class="project-desc">Sistema em PHP para gerenciar conquistas e platinas de jogos.</div>
+      <div class="project-buttons">
+        <a href="./platina-facil/index.php" target="_blank">Ver código</a>
+        <a href="https://github.com/GabeJCipher/platina-facil" target="_blank">Repositório</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">SavePoint</div>
+      <div class="project-desc">Aplicação em PHP que simula uma plataforma de backlog de jogos.</div>
+      <div class="project-buttons">
+        <a href="./savepoint/index.php" target="_blank">Ver código</a>
+        <a href="https://github.com/GabeJCipher/savepoint" target="_blank">Repositório</a>
+      </div>
+    </div>
+
   </div>
+
+  <h2>📫 Contato</h2>
+  <p>Email: <a href="mailto:gabrieljoavare7@gmail.com">gabrieljoavare7@gmail.com</a></p>
 
 </body>
 </html>
