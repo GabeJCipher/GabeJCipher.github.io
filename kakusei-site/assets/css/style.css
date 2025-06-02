@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #111;
+}
+header {
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+nav a {
+  text-decoration: none;
+  color: #333;
+  margin: 0 15px;
+}
+.hero {
+  padding: 100px 20px;
+  text-align: center;
+  background-color: #eee;
+}
+.intro, .projeto, .contato {
+  padding: 50px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+h1, h2 {
+  margin-bottom: 20px;
+}
