@@ -68,15 +68,79 @@
     .feature .text-link { color: var(--green); }
     .feature .text-link:hover { color: var(--paper); }
     .feature .text-link:focus-visible { outline-color: var(--green); }
-    .feature-art { position: relative; display: grid; place-items: center; min-height: 285px; overflow: hidden; background: radial-gradient(ellipse at 50% 45%, #a3be61 0%, #667a46 44%, #3e5238 79%); }
-    .feature-art::before { position: absolute; inset: 0; content: ''; background-image: repeating-linear-gradient(0deg, #fafbf31a 0 1px, transparent 1px 23px), repeating-linear-gradient(90deg, #fafbf31a 0 1px, transparent 1px 23px); mask-image: radial-gradient(ellipse, black 20%, transparent 85%); }
-    .library-card { z-index: 1; width: min(285px, calc(100% - 54px)); padding: 1rem; border: 1px solid #d8edac; border-radius: 17px; background: #172018; box-shadow: 0 18px 45px #18201977; transform: rotate(-5deg); }
-    .library-card header { display: flex; align-items: center; gap: .65rem; padding-bottom: .7rem; border-bottom: 1px solid #52604b; color: #fff; font-size: .87rem; font-weight: 700; }
-    .library-icon { display: inline-grid; place-items: center; background: var(--green); color: var(--ink); width: 26px; height: 26px; border-radius: 6px; font-size: .78rem; }
-    .library-row { display: grid; grid-template-columns: auto 1fr; gap: .65rem; align-items: center; margin-top: .65rem; padding: .45rem .55rem; border-radius: 8px; background: #29372a; color: #edf4e9; font: .72rem/1.4 var(--mono); }
-    .library-row::before { content: ''; width: 22px; height: 22px; border-radius: 5px; background: #b3d995; }
-    .library-row:nth-child(3)::before { background: #c3b5ea; }
-    .library-row:nth-child(4)::before { background: #e9bc88; }
+    .feature-gallery { align-self: center; padding: clamp(.8rem, 2.4vw, 1.55rem); }
+    .gallery { width: 100%; min-width: 0; color: var(--ink); }
+    .project .gallery { margin-block: .95rem .35rem; }
+    .gallery-track {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      overflow-x: auto;
+      list-style: none;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #ebece4;
+    }
+    .gallery[data-ready] .gallery-track { scrollbar-width: none; }
+    .gallery-track li { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; }
+    .gallery-image { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 10; }
+    .gallery[data-ready] .gallery-image { cursor: zoom-in; }
+    .gallery[data-ready] .gallery-image::after {
+      content: '⤢';
+      position: absolute;
+      top: .45rem;
+      right: .45rem;
+      display: grid;
+      place-items: center;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 5px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+    .gallery-image:focus-visible { outline-offset: -4px; }
+    .gallery-image img { display: block; width: 100%; height: 100%; max-height: 100%; min-height: 0; object-fit: contain; }
+    .gallery-bar { display: flex; align-items: center; gap: .55rem; margin-top: .4rem; }
+    .gallery-status { display: grid; flex: 1; align-content: center; min-width: 0; gap: .12rem; font-size: .78rem; line-height: 1.22; }
+    .gallery-count { color: var(--muted); font: .68rem/1.25 var(--mono); }
+    .gallery-button {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1.16rem/1 var(--sans);
+      cursor: pointer;
+    }
+    .gallery-button:hover { background: var(--green); }
+    .gallery-button[hidden], .gallery-status[hidden] { display: none; }
+    .feature .gallery-track, .feature .gallery-button { border-color: #65745f; }
+    .feature .gallery { color: var(--paper); }
+    .feature .gallery-count { color: #dce6d4; }
+    .feature .gallery :focus-visible { outline-color: var(--green); }
+    .gallery-button:focus-visible { outline: 2px solid #446726; outline-offset: 2px; }
+    .image-viewer {
+      width: max-content;
+      max-width: calc(100% - 1.4rem);
+      max-height: calc(100% - 1.4rem);
+      padding: .75rem;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .image-viewer::backdrop { background: #181b16d9; }
+    .viewer-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .55rem; font-weight: 700; }
+    .image-viewer img { display: block; width: auto; height: auto; max-width: 100%; max-height: calc(100dvh - 6rem); margin-inline: auto; object-fit: contain; }
 
     .grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .9rem; margin-top: .9rem; }
     .grid > .project { grid-column: span 2; }
@@ -120,7 +184,7 @@
       .intro { padding-block: 3.5rem 3rem; }
       .intro h1 { font-size: clamp(3.45rem, 14vw, 4.5rem); }
       .feature, .grid, .about-grid { grid-template-columns: 1fr; }
-      .feature-art { min-height: 225px; }
+      .feature-gallery { padding: 0 1.5rem 1.2rem; }
       .section { padding-bottom: 3rem; }
     }
 
@@ -167,17 +231,23 @@
       <article class="feature">
         <div class="feature-copy">
           <p class="eyebrow">Aplicação web</p>
-          <h3>Platina Fácil</h3>
+          <h3 id="platina-titulo">Platina Fácil</h3>
           <p>Sistema para consultar jogos e troféus e compartilhar guias de platina. Inclui cadastro de usuários, perfis, busca, comentários e avaliações de guias.</p>
           <ul class="tags" aria-label="Tecnologias"><li>PHP</li><li>HTML</li><li>CSS</li></ul>
           <a class="text-link" href="https://github.com/GabeJCipher/GabeJCipher.github.io/tree/main/platina-facil">Ver código do Platina Fácil <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="feature-art" aria-hidden="true">
-          <div class="library-card">
-            <header><span class="library-icon">PF</span>Platina Fácil</header>
-            <div class="library-row">Jogos e troféus</div>
-            <div class="library-row">Guias de platina</div>
-            <div class="library-row">Perfil do jogador</div>
+        <div class="feature-gallery">
+          <div class="gallery" role="region" aria-roledescription="carrossel" aria-labelledby="platina-titulo">
+            <ul class="gallery-track" role="list">
+              <li><a class="gallery-image" href="images/projetos/platina/catalogo.webp" data-caption="Catálogo de jogos · demonstração" aria-label="Ampliar imagem: Catálogo de jogos · demonstração"><img src="images/projetos/platina/catalogo.webp" alt="Página inicial do Platina Fácil com jogos em destaque e campo de busca" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/platina/trofeus.webp" data-caption="Troféus do jogo · demonstração" aria-label="Ampliar imagem: Troféus do jogo · demonstração"><img src="images/projetos/platina/trofeus.webp" alt="Ficha de um jogo com descrição e lista de troféus de exemplo" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/platina/guia.webp" data-caption="Guia da comunidade · demonstração" aria-label="Ampliar imagem: Guia da comunidade · demonstração"><img src="images/projetos/platina/guia.webp" alt="Tela de um guia de demonstração com roteiro para a platina" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <div class="gallery-bar">
+              <button class="gallery-button gallery-previous" type="button" aria-label="Imagem anterior" hidden>←</button>
+              <div class="gallery-status" aria-live="polite" aria-atomic="true" hidden><span class="gallery-caption"></span><span class="gallery-count"></span></div>
+              <button class="gallery-button gallery-next" type="button" aria-label="Próxima imagem" hidden>→</button>
+            </div>
           </div>
         </div>
       </article>
@@ -185,50 +255,143 @@
       <div class="grid">
         <article class="project priority">
           <p class="category eyebrow">Site em PHP</p>
-          <h3>Kakusei</h3>
+          <h3 id="kakusei-titulo">Kakusei</h3>
+          <div class="gallery" role="region" aria-roledescription="carrossel" aria-labelledby="kakusei-titulo">
+            <ul class="gallery-track" role="list">
+              <li><a class="gallery-image" href="images/projetos/kakusei/inicio.webp" data-caption="Página inicial" aria-label="Ampliar imagem: Página inicial"><img src="images/projetos/kakusei/inicio.webp" alt="Banner da página inicial e grade de lançamentos do site de mangás" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/kakusei/populares.webp" data-caption="Mangás populares" aria-label="Ampliar imagem: Mangás populares"><img src="images/projetos/kakusei/populares.webp" alt="Seção de mangás populares com capas e links de leitura" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/kakusei/mobile.webp" data-caption="Versão para celular" aria-label="Ampliar imagem: Versão para celular"><img src="images/projetos/kakusei/mobile.webp" alt="Página inicial e capas dos mangás em uma tela estreita" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <div class="gallery-bar">
+              <button class="gallery-button gallery-previous" type="button" aria-label="Imagem anterior" hidden>←</button>
+              <div class="gallery-status" aria-live="polite" aria-atomic="true" hidden><span class="gallery-caption"></span><span class="gallery-count"></span></div>
+              <button class="gallery-button gallery-next" type="button" aria-label="Próxima imagem" hidden>→</button>
+            </div>
+          </div>
           <p>Site para leitura online de mangás, com páginas em PHP e componentes compartilhados de cabeçalho e rodapé.</p>
           <ul class="tags" aria-label="Tecnologias"><li>PHP</li><li>HTML</li><li>CSS</li></ul>
           <a class="text-link" href="https://github.com/GabeJCipher/GabeJCipher.github.io/tree/main/kakusei-site">Ver código do Kakusei <span aria-hidden="true">↗</span></a>
         </article>
         <article class="project priority">
           <p class="category eyebrow">Aplicativo Android</p>
-          <h3>SavePoint</h3>
+          <h3 id="savepoint-titulo">SavePoint</h3>
+          <div class="gallery" role="region" aria-roledescription="carrossel" aria-labelledby="savepoint-titulo">
+            <ul class="gallery-track" role="list">
+              <li><a class="gallery-image" href="images/projetos/savepoint/biblioteca.webp" data-caption="Biblioteca · demonstração" aria-label="Ampliar imagem: Biblioteca · demonstração"><img src="images/projetos/savepoint/biblioteca.webp" alt="Biblioteca do SavePoint com jogos de exemplo e filtros de progresso" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/savepoint/login.webp" data-caption="Tela de entrada" aria-label="Ampliar imagem: Tela de entrada"><img src="images/projetos/savepoint/login.webp" alt="Tela de login do SavePoint com campos de email e senha" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/savepoint/cadastro.webp" data-caption="Criação de conta" aria-label="Ampliar imagem: Criação de conta"><img src="images/projetos/savepoint/cadastro.webp" alt="Formulário de cadastro do SavePoint" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <div class="gallery-bar">
+              <button class="gallery-button gallery-previous" type="button" aria-label="Imagem anterior" hidden>←</button>
+              <div class="gallery-status" aria-live="polite" aria-atomic="true" hidden><span class="gallery-caption"></span><span class="gallery-count"></span></div>
+              <button class="gallery-button gallery-next" type="button" aria-label="Próxima imagem" hidden>→</button>
+            </div>
+          </div>
           <p>Biblioteca pessoal de jogos com busca, lista de desejos, favoritos e avaliações. A autenticação e o armazenamento em nuvem vinculam o progresso à conta de cada jogador.</p>
           <ul class="tags" aria-label="Tecnologias"><li>Flutter</li><li>Dart</li><li>Supabase</li></ul>
         </article>
         <article class="project">
           <p class="category eyebrow">IA e dados</p>
-          <h3>Diário Oficial Inteligente de Avaré</h3>
+          <h3 id="diario-titulo">Diário Oficial Inteligente de Avaré</h3>
+          <div class="gallery" role="region" aria-roledescription="carrossel" aria-labelledby="diario-titulo">
+            <ul class="gallery-track" role="list">
+              <li><a class="gallery-image" href="images/projetos/diario/classificador.webp" data-caption="Classificador" aria-label="Ampliar imagem: Classificador"><img src="images/projetos/diario/classificador.webp" alt="Aplicação Streamlit com uma publicação de exemplo e o resultado da classificação" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/diario/indicadores.webp" data-caption="Painel de indicadores" aria-label="Ampliar imagem: Painel de indicadores"><img src="images/projetos/diario/indicadores.webp" alt="Painel da base rotulada com totais e distribuição por classe" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/diario/avaliacao.webp" data-caption="Avaliação do modelo" aria-label="Ampliar imagem: Avaliação do modelo"><img src="images/projetos/diario/avaliacao.webp" alt="Matriz de confusão presente no relatório da avaliação do modelo" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <div class="gallery-bar">
+              <button class="gallery-button gallery-previous" type="button" aria-label="Imagem anterior" hidden>←</button>
+              <div class="gallery-status" aria-live="polite" aria-atomic="true" hidden><span class="gallery-caption"></span><span class="gallery-count"></span></div>
+              <button class="gallery-button gallery-next" type="button" aria-label="Próxima imagem" hidden>→</button>
+            </div>
+          </div>
           <p>Sistema acadêmico que coleta publicações do Diário Oficial e usa um modelo de classificação textual para organizar os documentos.</p>
           <ul class="tags" aria-label="Tecnologias"><li>Python</li><li>PyTorch</li><li>Streamlit</li><li>SQLite</li></ul>
         </article>
         <article class="project">
           <p class="category eyebrow">Aplicativo Android</p>
-          <h3>Avisos de Engenharia</h3>
+          <h3 id="avisos-titulo">Avisos de Engenharia</h3>
+          <div class="gallery" role="region" aria-roledescription="carrossel" aria-labelledby="avisos-titulo">
+            <ul class="gallery-track" role="list">
+              <li><a class="gallery-image" href="images/projetos/avisos/grade.webp" data-caption="Grade de aulas · demonstração" aria-label="Ampliar imagem: Grade de aulas · demonstração"><img src="images/projetos/avisos/grade.webp" alt="Tela inicial de avisos acadêmicos com notificações e aulas do dia" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/avisos/lembretes.webp" data-caption="Horários dos avisos · demonstração" aria-label="Ampliar imagem: Horários dos avisos · demonstração"><img src="images/projetos/avisos/lembretes.webp" alt="Lista de horários dos lembretes e botão para testar uma notificação" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <div class="gallery-bar">
+              <button class="gallery-button gallery-previous" type="button" aria-label="Imagem anterior" hidden>←</button>
+              <div class="gallery-status" aria-live="polite" aria-atomic="true" hidden><span class="gallery-caption"></span><span class="gallery-count"></span></div>
+              <button class="gallery-button gallery-next" type="button" aria-label="Próxima imagem" hidden>→</button>
+            </div>
+          </div>
           <p>App em Flutter voltado a avisos para estudantes de Engenharia da Computação, com notificações em horários programados e tema escuro.</p>
           <ul class="tags" aria-label="Tecnologias"><li>Flutter</li><li>Dart</li><li>Android</li></ul>
         </article>
         <article class="project">
           <p class="category eyebrow">TCC · Em desenvolvimento</p>
-          <h3>Monitoramento em espaços confinados</h3>
+          <h3 id="confinados-titulo">Monitoramento em espaços confinados</h3>
+          <div class="gallery" role="region" aria-roledescription="carrossel" aria-labelledby="confinados-titulo">
+            <ul class="gallery-track" role="list">
+              <li><a class="gallery-image" href="images/projetos/confinados/solucao.webp" data-caption="Proposta do TCC" aria-label="Ampliar imagem: Proposta do TCC"><img src="images/projetos/confinados/solucao.webp" alt="Slide sobre coleta com IoT e acompanhamento das condições do trabalhador e do ambiente" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/confinados/arquitetura.webp" data-caption="Arquitetura conceitual" aria-label="Ampliar imagem: Arquitetura conceitual"><img src="images/projetos/confinados/arquitetura.webp" alt="Diagrama do TCC com sensores, comunicação e acompanhamento externo" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/confinados/alertas.webp" data-caption="Alertas e acompanhamento" aria-label="Ampliar imagem: Alertas e acompanhamento"><img src="images/projetos/confinados/alertas.webp" alt="Slide sobre leituras, alertas e registro de ocorrências no TCC" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <div class="gallery-bar">
+              <button class="gallery-button gallery-previous" type="button" aria-label="Imagem anterior" hidden>←</button>
+              <div class="gallery-status" aria-live="polite" aria-atomic="true" hidden><span class="gallery-caption"></span><span class="gallery-count"></span></div>
+              <button class="gallery-button gallery-next" type="button" aria-label="Próxima imagem" hidden>→</button>
+            </div>
+          </div>
           <p>Projeto em equipe para reunir sinais vitais e dados ambientais, apoiar o acompanhamento externo e usar IA na análise dos registros.</p>
           <ul class="tags" aria-label="Áreas"><li>IoT</li><li>Sensores</li><li>IA</li></ul>
         </article>
         <article class="project">
           <p class="category eyebrow">Linguagens de programação</p>
-          <h3>Lume</h3>
+          <h3 id="lume-titulo">Lume</h3>
+          <div class="gallery" role="region" aria-roledescription="carrossel" aria-labelledby="lume-titulo">
+            <ul class="gallery-track" role="list">
+              <li><a class="gallery-image" href="images/projetos/lume/laco.webp" data-caption="Listas e laços" aria-label="Ampliar imagem: Listas e laços"><img src="images/projetos/lume/laco.webp" alt="Código Lume que percorre uma lista e a saída real do interpretador" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/lume/media.webp" data-caption="Cálculo de média" aria-label="Ampliar imagem: Cálculo de média"><img src="images/projetos/lume/media.webp" alt="Código Lume que calcula uma média e a saída real do interpretador" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <div class="gallery-bar">
+              <button class="gallery-button gallery-previous" type="button" aria-label="Imagem anterior" hidden>←</button>
+              <div class="gallery-status" aria-live="polite" aria-atomic="true" hidden><span class="gallery-caption"></span><span class="gallery-count"></span></div>
+              <button class="gallery-button gallery-next" type="button" aria-label="Próxima imagem" hidden>→</button>
+            </div>
+          </div>
           <p>Linguagem de programação criada em equipe na FEAP. O interpretador executa variáveis tipadas, expressões, condições e laços a partir da árvore sintática.</p>
           <ul class="tags" aria-label="Componentes"><li>Lexer</li><li>Parser</li><li>AST</li><li>Interpretador</li></ul>
         </article>
         <article class="project">
           <p class="category eyebrow">Blockchain</p>
-          <h3>Rastreabilidade de lotes de resina</h3>
+          <h3 id="resina-titulo">Rastreabilidade de lotes de resina</h3>
+          <div class="gallery" role="region" aria-roledescription="carrossel" aria-labelledby="resina-titulo">
+            <ul class="gallery-track" role="list">
+              <li><a class="gallery-image" href="images/projetos/resina/contrato.webp" data-caption="Contrato e documentos" aria-label="Ampliar imagem: Contrato e documentos"><img src="images/projetos/resina/contrato.webp" alt="Slide sobre o registro em EVM e o armazenamento de documentos fora da cadeia" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/resina/demonstracao.webp" data-caption="Fluxo do protótipo" aria-label="Ampliar imagem: Fluxo do protótipo"><img src="images/projetos/resina/demonstracao.webp" alt="Slide da demonstração com os estados do lote e exemplos de operações rejeitadas" loading="lazy" decoding="async"></a></li>
+              <li><a class="gallery-image" href="images/projetos/resina/testes.webp" data-caption="Resultados dos testes" aria-label="Ampliar imagem: Resultados dos testes"><img src="images/projetos/resina/testes.webp" alt="Slide com o resultado dos 110 casos de teste da entrega acadêmica" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <div class="gallery-bar">
+              <button class="gallery-button gallery-previous" type="button" aria-label="Imagem anterior" hidden>←</button>
+              <div class="gallery-status" aria-live="polite" aria-atomic="true" hidden><span class="gallery-caption"></span><span class="gallery-count"></span></div>
+              <button class="gallery-button gallery-next" type="button" aria-label="Próxima imagem" hidden>→</button>
+            </div>
+          </div>
           <p>Protótipo em equipe que registra alterações no estado do lote, verifica permissões e referencia comprovantes por hash. A entrega documentou 110 casos de teste.</p>
           <ul class="tags" aria-label="Tecnologias"><li>Solidity</li><li>EVM</li><li>SHA-256</li></ul>
         </article>
         <article class="project">
           <p class="category eyebrow">Desenvolvimento de jogos</p>
-          <h3>GhostFox</h3>
+          <h3 id="ghostfox-titulo">GhostFox</h3>
+          <div class="gallery" role="region" aria-roledescription="carrossel" aria-labelledby="ghostfox-titulo">
+            <ul class="gallery-track" role="list">
+              <li><a class="gallery-image" href="images/projetos/ghostfox/menu.webp" data-caption="Arte do menu" aria-label="Ampliar imagem: Arte do menu"><img src="images/projetos/ghostfox/menu.webp" alt="Arte do menu do GhostFox com uma raposa, fantasmas e o logotipo do jogo" loading="lazy" decoding="async"></a></li>
+            <li><a class="gallery-image" href="images/projetos/ghostfox/fluxo.webp" data-caption="Diagrama da progressão" aria-label="Ampliar imagem: Diagrama da progressão"><img src="images/projetos/ghostfox/fluxo.webp" alt="Esquema do ciclo de combate, ganho de experiência e evolução de nível do GhostFox" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <div class="gallery-bar">
+              <button class="gallery-button gallery-previous" type="button" aria-label="Imagem anterior" hidden>←</button>
+              <div class="gallery-status" aria-live="polite" aria-atomic="true" hidden><span class="gallery-caption"></span><span class="gallery-count"></span></div>
+              <button class="gallery-button gallery-next" type="button" aria-label="Próxima imagem" hidden>→</button>
+            </div>
+          </div>
           <p>Protótipo de jogo de arena roguelite com combate, sistema de experiência e evolução de nível.</p>
           <ul class="tags" aria-label="Tecnologias"><li>Unity</li><li>C#</li></ul>
         </article>
@@ -262,5 +425,15 @@
       </div>
     </div>
   </footer>
+  <dialog class="image-viewer" aria-labelledby="viewer-title">
+    <div class="viewer-header">
+      <span id="viewer-title"></span>
+      <form method="dialog">
+        <button class="gallery-button" type="submit" aria-label="Fechar imagem" autofocus>×</button>
+      </form>
+    </div>
+    <img alt="">
+  </dialog>
+  <script src="carousel.js" defer></script>
 </body>
 </html>
